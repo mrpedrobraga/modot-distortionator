@@ -6,6 +6,7 @@ code = "shader_type canvas_item;
 render_mode blend_mix;
 
 //these are variables
+uniform float opacity = 1.0;
 uniform vec2 screen_size = vec2(320, 180);
 uniform vec2 move = vec2(0,0);
 uniform vec2 ping_pong_speed = vec2(0,0);
@@ -137,6 +138,7 @@ vec2 distort(vec2 p) {
 		COLOR = texture(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y));
 		COLOR = vec4(texture(palette, vec2(ccycle, 0)).rgb, c.a);
 	} else{
-		COLOR = (textureLod(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y), 0))
+		COLOR = (textureLod(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y), 0));
 	}
+	COLOR.a = opacity;
 }"
