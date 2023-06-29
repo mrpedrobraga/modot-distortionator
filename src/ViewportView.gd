@@ -12,3 +12,17 @@ func set_viewport_path(path):
 func _ready():
 	if viewport_path:
 		texture = get_node(viewport_path).get_texture()
+
+
+func _on_width_value_changed(value):
+	var viewport: Viewport = get_node(viewport_path)
+	viewport.size.x = value
+	update()
+
+func _on_height_value_changed(value):
+	var viewport: Viewport = get_node(viewport_path)
+	viewport.size.y = value
+	update()
+
+func _on_CheckBox_toggled(button_pressed):
+	stretch_mode = STRETCH_KEEP_ASPECT_CENTERED if button_pressed else STRETCH_KEEP_CENTERED

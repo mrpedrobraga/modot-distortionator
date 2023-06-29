@@ -140,5 +140,5 @@ vec2 distort(vec2 p) {
 	} else{
 		COLOR = (textureLod(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y), 0));
 	}
-	COLOR.a = opacity;
+	COLOR.a *= opacity;
 }"
