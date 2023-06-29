@@ -31,6 +31,7 @@ uniform vec2 inter_trans_ping_pong = vec2(0,0);
 uniform float palette_shifting_speed = 0;
 uniform sampler2D palette;
 uniform bool palette_shifting;
+uniform vec2 palette_size;
 
 uniform bool barrel = false;
 uniform float effect = 1; // -1.0 is BARREL, 0.1 is PINCUSHION. For planets, ideally -1.1 to -4.
@@ -48,6 +49,7 @@ vec2 distort(vec2 p) {
 
  void fragment(){
     vec2 newuv = UV;
+	vec4 modulate = COLOR;
 	
 	vec2 xy = vec2(2.0 * UV);
 	
@@ -101,10 +103,7 @@ vec2 distort(vec2 p) {
 		newuv.y += TIME * move.y/0.5;
 	}
 	
-	palette_shifting_speed * 2.0;
-	vec4 c = texture(TEXTURE, newuv);
-	COLOR = c;
-	float ccycle = mod(c.r - TIME * palette_shifting_speed, 1.0);
+	COLOR = texture(TEXTURE, newuv);
 	float diff_x = 0.0;
 	float diff_y = 0.0;
 	
@@ -133,10 +132,8 @@ vec2 distort(vec2 p) {
 		}
 	}
 	
-	//the shifting of the palette
 	if (palette_shifting) {
-		COLOR = texture(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y));
-		COLOR = vec4(texture(palette, vec2(ccycle, 0)).rgb, c.a);
+		COLOR = vec4(texture(palette, vec2(COLOR.r, mod(-TIME * palette_shifting_speed + 1.0/(palette_size.y), 1.0))).rgb, COLOR.a);
 	} else{
 		COLOR = (textureLod(TEXTURE, vec2(newuv.x + diff_x, newuv.y + diff_y), 0));
 	}
