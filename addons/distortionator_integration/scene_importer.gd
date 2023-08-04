@@ -3,6 +3,7 @@ extends EditorSceneImporter
 
 var DEFAULT_SHADER = preload("default_shader.tres")
 var DEFAULT_TEXTURE = preload("background.png")
+var emptyStylebox = StyleBoxEmpty.new()
 
 func _get_extensions():
 	return ["dsp", "bbg"]
@@ -13,6 +14,7 @@ func _get_import_flags():
 func _import_scene(path : String, flags : int, bake_fps : int):
 	var file := ConfigFile.new()
 	var node := PanelContainer.new()
+	node.add_stylebox_override("panel", emptyStylebox)
 	node.name = "BBG"
 	node.anchor_top = 0
 	node.anchor_bottom = 1

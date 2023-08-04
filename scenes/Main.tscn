@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/icons/Remove.png" type="Texture" id=1]
 [ext_resource path="res://src/D_Core.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://distortionator_theme.tres" type="Theme" id=6]
 [ext_resource path="res://src/ViewportView.gd" type="Script" id=7]
 [ext_resource path="res://assets/icons/Load.png" type="Texture" id=8]
+[ext_resource path="res://addons/GifMaker/GifRecorder.gd" type="Script" id=9]
+[ext_resource path="res://addons/GifMaker/GifRectangle.gd" type="Script" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -43,12 +45,26 @@ margin_right = 1440.0
 margin_bottom = 810.0
 custom_styles/panel = SubResource( 4 )
 
+[node name="GifRecorder" type="Viewport" parent="p/Viewport"]
+size = Vector2( 64, 64 )
+transparent_bg = true
+script = ExtResource( 9 )
+render_type = 1
+seconds = 1.0
+autostart = true
+capture_node_path = NodePath("../GifRectangle")
+
+[node name="GifRectangle" type="ReferenceRect" parent="p/Viewport"]
+margin_right = 320.0
+margin_bottom = 180.0
+script = ExtResource( 10 )
+
 [node name="Preview2" type="TextureRect" parent="p"]
 modulate = Color( 0.286275, 0.286275, 0.286275, 1 )
 margin_right = 1440.0
 margin_bottom = 403.0
 expand = true
-stretch_mode = 6
+stretch_mode = 7
 script = ExtResource( 7 )
 viewport_path = NodePath("../Viewport")
 
@@ -91,7 +107,7 @@ tab_align = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 39.0
+margin_top = 37.0
 margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 0, 150 )
@@ -148,7 +164,7 @@ tab_align = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 39.0
+margin_top = 37.0
 margin_right = -4.0
 margin_bottom = -4.0
 size_flags_vertical = 3
@@ -227,7 +243,7 @@ tab_align = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 39.0
+margin_top = 37.0
 margin_right = -4.0
 margin_bottom = -4.0
 expand = true
@@ -275,6 +291,20 @@ margin_right = 487.0
 margin_bottom = 40.0
 pressed = true
 text = "Scale to fit"
+
+[node name="RecordProps" type="HBoxContainer" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -487.0
+margin_bottom = 40.0
+alignment = 2
+
+[node name="Button" type="Button" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/RecordProps"]
+margin_left = 426.0
+margin_right = 487.0
+margin_bottom = 40.0
+toggle_mode = true
+text = "Record"
 
 [node name="toolbar" type="HBoxContainer" parent="p/v"]
 margin_top = 372.0
@@ -373,6 +403,7 @@ access = 2
 current_dir = "/Users/carlo/OneDrive/Área de Trabalho/Dev/Modot Distortionator/modot-distortionator"
 current_path = "/Users/carlo/OneDrive/Área de Trabalho/Dev/Modot Distortionator/modot-distortionator/"
 
+[connection signal="encoding_progress" from="p/Viewport/GifRecorder" to="." method="_on_GifRecorder_encoding_progress"]
 [connection signal="pressed" from="p/Toolbar/btn_run" to="." method="_on_btn_run_pressed"]
 [connection signal="item_selected" from="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/layer_list" to="." method="_on_layer_list_item_selected"]
 [connection signal="pressed" from="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/HBoxContainer/btn_add" to="." method="_on_btn_layer_add_pressed"]
@@ -380,6 +411,7 @@ current_path = "/Users/carlo/OneDrive/Área de Trabalho/Dev/Modot Distortionator
 [connection signal="value_changed" from="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps/width" to="p/v/HSplit/ShaderEditPanel/TabContainer/Preview" method="_on_width_value_changed"]
 [connection signal="value_changed" from="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps/height" to="p/v/HSplit/ShaderEditPanel/TabContainer/Preview" method="_on_height_value_changed"]
 [connection signal="toggled" from="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps/CheckBox" to="p/v/HSplit/ShaderEditPanel/TabContainer/Preview" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/RecordProps/Button" to="." method="_on_record_toggled"]
 [connection signal="pressed" from="p/v/toolbar/btn_project_open" to="." method="_on_btn_project_open_pressed"]
 [connection signal="pressed" from="p/v/toolbar/btn_project_save" to="." method="_on_btn_project_save_pressed"]
 [connection signal="pressed" from="p/v/toolbar/btn_project_save_as" to="." method="_on_btn_project_save_as_pressed"]

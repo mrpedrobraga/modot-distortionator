@@ -15,6 +15,7 @@ onready var shader_edit_panel : VBoxContainer = $"p/v/HSplit/ShaderEditPanel"
 onready var shaders_container : TabContainer = $"p/v/HSplit/ShaderEditPanel/TabContainer"
 
 onready var layers_viewport : Viewport = $"p/Viewport"
+onready var layers_gif_recorder : GifRecorder = $"p/Viewport/GifRecorder"
 onready var layers_container : Control = $"p/Viewport/LayerContainer"
 onready var layers_list : ItemList = $"p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/layer_list"
 
@@ -535,3 +536,55 @@ func load_png(file_path : String):
 		
 		return img_tex
 	return null
+
+var frame_no := 0
+var recording_frames := false
+var export_dir
+
+func get_frames_export_path():
+	return project_path + "/_tmp/"
+
+func begin_exporting_gif():
+	export_dir = Directory.new()
+	var exdir = get_frames_export_path()
+	print("Exporting frames at " + exdir)
+	export_dir.open(exdir.get_base_dir())
+	if not export_dir.dir_exists(exdir):
+		export_dir.make_dir(exdir)
+	frame_no = 0
+	recording_frames = true
+	export_frame()
+
+func end_exporting_gif():
+	recording_frames = false
+
+func export_frame():
+	layers_gif_recorder.render_to_file(get_frames_export_path() + save_path.get_file().get_basename() + '.gif')
+	yield(layers_gif_recorder, 'done_encoding')
+
+	print('Done encoding GIF!')
+
+	layers_gif_recorder.clear()
+	layers_gif_recorder.start()
+	
+	return
+	var img := layers_viewport.get_texture().get_data()
+	img.save_png(get_frames_export_path() + "frame_" + str(frame_no) + ".png")
+	frame_no += 1
+
+func _on_record_toggled(button_pressed):
+	if button_pressed:
+		begin_exporting_gif()
+	else:
+		end_exporting_gif()
+
+func process_frames_recording():
+	pass
+
+func _process(delta):
+	if recording_frames:
+		process_frames_recording()
+
+
+func _on_GifRecorder_encoding_progress(percentage, frames_done):
+	print("Encoding GIF: ", percentage, "%.")

@@ -24,6 +24,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/FileRef.gd"
 }, {
+"base": "Node",
+"class": "GifDecoder",
+"language": "GDScript",
+"path": "res://addons/GifMaker/GifDecoder.gd"
+}, {
+"base": "Viewport",
+"class": "GifRecorder",
+"language": "GDScript",
+"path": "res://addons/GifMaker/GifRecorder.gd"
+}, {
+"base": "ReferenceRect",
+"class": "GifRectangle",
+"language": "GDScript",
+"path": "res://addons/GifMaker/GifRectangle.gd"
+}, {
 "base": "HBoxContainer",
 "class": "PropertyPicker",
 "language": "GDScript",
@@ -43,6 +58,9 @@ _global_script_class_icons={
 "Distortionator_Core": "",
 "Distortionator_LayerView": "",
 "FileRef": "",
+"GifDecoder": "",
+"GifRecorder": "res://addons/GifMaker/gif.svg",
+"GifRectangle": "res://addons/GifMaker/GifRectangle.svg",
 "PropertyPicker": "",
 "ShaderInspector": "",
 "UniformEditor": ""
@@ -68,7 +86,7 @@ window/size/test_height=600
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/distortionator_integration/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/GifMaker/plugin.cfg", "res://addons/distortionator_integration/plugin.cfg" )
 
 [input]
 
