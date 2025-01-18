@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/icons/Load.png" type="Texture" id=1]
+[ext_resource path="res://src/file_picker.gd" type="Script" id=2]
+
+[node name="file_picker" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+
+[node name="txt_res_path" type="LineEdit" parent="."]
+margin_right = 1408.0
+margin_bottom = 810.0
+size_flags_horizontal = 3
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="btn_open_dialog" type="Button" parent="."]
+margin_left = 1412.0
+margin_right = 1440.0
+margin_bottom = 810.0
+icon = ExtResource( 1 )
+
+[connection signal="pressed" from="btn_open_dialog" to="." method="_on_btn_open_dialog_pressed"]

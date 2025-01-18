@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/ShaderEditor.gd" type="Script" id=2]
+
+[node name="TextEdit" type="TextEdit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
+custom_colors/function_color = Color( 0.341176, 0.701961, 1, 1 )
+custom_colors/symbol_color = Color( 0.670588, 0.784314, 1, 1 )
+custom_colors/background_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+custom_colors/number_color = Color( 0.631373, 1, 0.878431, 1 )
+text = "shader_type canvas_item;
+
+uniform float r = 0.0;
+uniform float g = 0.5;
+uniform float b = 0.8;
+
+void fragment() {
+	vec4 base = texture(TEXTURE, UV);
+	COLOR = base * vec4(r, g, b, 1.0);
+}"
+highlight_current_line = true
+syntax_highlighting = true
+show_line_numbers = true
+draw_tabs = true
+fold_gutter = true
+highlight_all_occurrences = true
+smooth_scrolling = true
+hiding_enabled = true
+minimap_draw = true
+script = ExtResource( 2 )

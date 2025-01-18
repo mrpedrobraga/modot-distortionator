@@ -1,0 +1,109 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "Distortionator_Core",
+"language": "GDScript",
+"path": "res://src/D_Core.gd"
+}, {
+"base": "TextureRect",
+"class": "Distortionator_LayerView",
+"language": "GDScript",
+"path": "res://src/LayerView.gd"
+}, {
+"base": "Resource",
+"class": "FileRef",
+"language": "GDScript",
+"path": "res://src/FileRef.gd"
+}, {
+"base": "Node",
+"class": "GifDecoder",
+"language": "GDScript",
+"path": "res://addons/GifMaker/GifDecoder.gd"
+}, {
+"base": "Viewport",
+"class": "GifRecorder",
+"language": "GDScript",
+"path": "res://addons/GifMaker/GifRecorder.gd"
+}, {
+"base": "ReferenceRect",
+"class": "GifRectangle",
+"language": "GDScript",
+"path": "res://addons/GifMaker/GifRectangle.gd"
+}, {
+"base": "HBoxContainer",
+"class": "PropertyPicker",
+"language": "GDScript",
+"path": "res://src/PropertyPicker.gd"
+}, {
+"base": "Node",
+"class": "ShaderInspector",
+"language": "GDScript",
+"path": "res://src/ShaderInspector.gd"
+}, {
+"base": "HBoxContainer",
+"class": "UniformEditor",
+"language": "GDScript",
+"path": "res://src/UniformEditor.gd"
+} ]
+_global_script_class_icons={
+"Distortionator_Core": "",
+"Distortionator_LayerView": "",
+"FileRef": "",
+"GifDecoder": "",
+"GifRecorder": "res://addons/GifMaker/gif.svg",
+"GifRectangle": "res://addons/GifMaker/GifRectangle.svg",
+"PropertyPicker": "",
+"ShaderInspector": "",
+"UniformEditor": ""
+}
+
+[application]
+
+config/name="Distortionator 1.0"
+config/description="A simple app to create battle backgrounds for Modot."
+run/main_scene="res://scenes/Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://src/Globals.gd"
+
+[display]
+
+window/size/width=1440
+window/size/height=810
+window/size/test_width=900
+window/size/test_height=600
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/GifMaker/plugin.cfg", "res://addons/distortionator_integration/plugin.cfg" )
+
+[input]
+
+ui_toggle_view={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777248,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+quality/filters/anisotropic_filter_level=1
+quality/filters/use_nearest_mipmap_filter=true
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_environment="res://default_env.tres"

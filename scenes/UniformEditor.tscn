@@ -1,0 +1,185 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/UniformEditor.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://assets/icons/Load.png" type="Texture" id=3]
+
+[node name="UniformEditor" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+
+[node name="lbl_uniform_name" type="Label" parent="."]
+margin_right = 160.0
+margin_bottom = 810.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_vertical = 3
+text = "uniform_name"
+clip_text = true
+
+[node name="bool" type="CheckButton" parent="."]
+visible = false
+margin_left = 722.0
+margin_right = 1440.0
+margin_bottom = 810.0
+size_flags_horizontal = 3
+flat = true
+
+[node name="int" type="SpinBox" parent="."]
+visible = false
+margin_left = 644.0
+margin_right = 1284.0
+margin_bottom = 810.0
+size_flags_horizontal = 3
+allow_greater = true
+allow_lesser = true
+
+[node name="float" type="SpinBox" parent="."]
+visible = false
+margin_left = 644.0
+margin_right = 1284.0
+margin_bottom = 810.0
+size_flags_horizontal = 3
+step = 0.1
+allow_greater = true
+allow_lesser = true
+
+[node name="vec2" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 1288.0
+margin_right = 1440.0
+margin_bottom = 810.0
+size_flags_horizontal = 3
+
+[node name="x" type="SpinBox" parent="vec2"]
+margin_right = 74.0
+margin_bottom = 810.0
+size_flags_horizontal = 3
+step = 0.1
+allow_greater = true
+allow_lesser = true
+prefix = "x: "
+
+[node name="y" type="SpinBox" parent="vec2"]
+margin_left = 78.0
+margin_right = 152.0
+margin_bottom = 810.0
+size_flags_horizontal = 3
+step = 0.1
+allow_greater = true
+allow_lesser = true
+prefix = "y: "
+
+[node name="vec3" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 1288.0
+margin_right = 1440.0
+margin_bottom = 810.0
+
+[node name="x" type="SpinBox" parent="vec3"]
+margin_right = 74.0
+margin_bottom = 810.0
+step = 0.1
+allow_greater = true
+allow_lesser = true
+prefix = "x: "
+
+[node name="y" type="SpinBox" parent="vec3"]
+margin_left = 78.0
+margin_right = 152.0
+margin_bottom = 810.0
+step = 0.1
+allow_greater = true
+allow_lesser = true
+prefix = "y: "
+
+[node name="z" type="SpinBox" parent="vec3"]
+margin_left = 78.0
+margin_right = 152.0
+margin_bottom = 810.0
+step = 0.1
+allow_greater = true
+allow_lesser = true
+prefix = "z: "
+
+[node name="vec4" type="GridContainer" parent="."]
+visible = false
+margin_left = 1288.0
+margin_right = 1440.0
+margin_bottom = 810.0
+columns = 2
+
+[node name="x" type="SpinBox" parent="vec4"]
+margin_right = 74.0
+margin_bottom = 810.0
+step = 0.1
+allow_greater = true
+allow_lesser = true
+prefix = "x: "
+
+[node name="y" type="SpinBox" parent="vec4"]
+margin_left = 78.0
+margin_right = 152.0
+margin_bottom = 810.0
+step = 0.1
+allow_greater = true
+allow_lesser = true
+prefix = "y: "
+
+[node name="z" type="SpinBox" parent="vec4"]
+margin_left = 78.0
+margin_right = 152.0
+margin_bottom = 810.0
+step = 0.1
+allow_greater = true
+allow_lesser = true
+prefix = "z: "
+
+[node name="w" type="SpinBox" parent="vec4"]
+margin_left = 78.0
+margin_right = 152.0
+margin_bottom = 810.0
+step = 0.1
+allow_greater = true
+allow_lesser = true
+prefix = "w: "
+
+[node name="sampler2D" type="HBoxContainer" parent="."]
+visible = false
+margin_left = 164.0
+margin_right = 1440.0
+margin_bottom = 810.0
+size_flags_horizontal = 3
+
+[node name="preview" type="TextureRect" parent="sampler2D"]
+margin_right = 1244.0
+margin_bottom = 810.0
+size_flags_horizontal = 3
+texture = ExtResource( 2 )
+stretch_mode = 6
+
+[node name="v" type="VBoxContainer" parent="sampler2D"]
+margin_left = 1248.0
+margin_right = 1276.0
+margin_bottom = 810.0
+
+[node name="btn_pick_new_file" type="Button" parent="sampler2D/v"]
+margin_right = 28.0
+margin_bottom = 22.0
+icon = ExtResource( 3 )
+flat = true
+
+[connection signal="toggled" from="bool" to="." method="_on_bool_toggled"]
+[connection signal="value_changed" from="int" to="." method="_on_int_value_changed"]
+[connection signal="value_changed" from="float" to="." method="_on_float_value_changed"]
+[connection signal="value_changed" from="vec2/x" to="." method="_on_x_value_changed"]
+[connection signal="value_changed" from="vec2/y" to="." method="_on_y_value_changed"]
+[connection signal="value_changed" from="vec3/x" to="." method="_on_x_value_changed"]
+[connection signal="value_changed" from="vec3/y" to="." method="_on_y_value_changed"]
+[connection signal="value_changed" from="vec3/z" to="." method="_on_z_value_changed"]
+[connection signal="value_changed" from="vec4/x" to="." method="_on_x_value_changed"]
+[connection signal="value_changed" from="vec4/y" to="." method="_on_y_value_changed"]
+[connection signal="value_changed" from="vec4/z" to="." method="_on_z_value_changed"]
+[connection signal="value_changed" from="vec4/w" to="." method="_on_w_value_changed"]
+[connection signal="pressed" from="sampler2D/v/btn_pick_new_file" to="." method="_on_btn_pick_new_file_pressed"]

@@ -1,0 +1,421 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/icons/Remove.png" type="Texture" id=1]
+[ext_resource path="res://src/D_Core.gd" type="Script" id=2]
+[ext_resource path="res://assets/icons/Play.png" type="Texture" id=3]
+[ext_resource path="res://assets/icons/Add.png" type="Texture" id=4]
+[ext_resource path="res://scenes/file_picker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://distortionator_theme.tres" type="Theme" id=6]
+[ext_resource path="res://src/ViewportView.gd" type="Script" id=7]
+[ext_resource path="res://assets/icons/Load.png" type="Texture" id=8]
+[ext_resource path="res://addons/GifMaker/GifRecorder.gd" type="Script" id=9]
+[ext_resource path="res://addons/GifMaker/GifRectangle.gd" type="Script" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="InputEventAction" id=5]
+action = "ui_toggle_view"
+
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
+
+[node name="Control" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+script = ExtResource( 2 )
+
+[node name="p" type="PanelContainer" parent="."]
+visible = false
+margin_right = 1440.0
+margin_bottom = 403.0
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="Viewport" type="Viewport" parent="p"]
+size = Vector2( 320, 180 )
+transparent_bg = true
+render_target_v_flip = true
+render_target_update_mode = 3
+
+[node name="LayerContainer" type="PanelContainer" parent="p/Viewport"]
+margin_right = 1440.0
+margin_bottom = 810.0
+custom_styles/panel = SubResource( 4 )
+
+[node name="GifRecorder" type="Viewport" parent="p/Viewport"]
+size = Vector2( 64, 64 )
+transparent_bg = true
+script = ExtResource( 9 )
+render_type = 1
+seconds = 1.0
+autostart = true
+capture_node_path = NodePath("../GifRectangle")
+
+[node name="GifRectangle" type="ReferenceRect" parent="p/Viewport"]
+margin_right = 320.0
+margin_bottom = 180.0
+script = ExtResource( 10 )
+
+[node name="Preview2" type="TextureRect" parent="p"]
+modulate = Color( 0.286275, 0.286275, 0.286275, 1 )
+margin_right = 1440.0
+margin_bottom = 403.0
+expand = true
+stretch_mode = 7
+script = ExtResource( 7 )
+viewport_path = NodePath("../Viewport")
+
+[node name="Toolbar" type="HBoxContainer" parent="p"]
+visible = false
+margin_right = 1440.0
+margin_bottom = 810.0
+
+[node name="btn_run" type="Button" parent="p/Toolbar"]
+margin_right = 24.0
+margin_bottom = 810.0
+toggle_mode = true
+pressed = true
+shortcut = SubResource( 6 )
+icon = ExtResource( 3 )
+flat = true
+
+[node name="v" type="VBoxContainer" parent="p"]
+margin_right = 1440.0
+margin_bottom = 403.0
+
+[node name="HSplit" type="HSplitContainer" parent="p/v"]
+margin_right = 1440.0
+margin_bottom = 368.0
+size_flags_vertical = 3
+
+[node name="PropertyEditPanel" type="VSplitContainer" parent="p/v/HSplit"]
+margin_right = 480.0
+margin_bottom = 368.0
+rect_min_size = Vector2( 480, 0 )
+split_offset = -200
+
+[node name="dock_proj_layers" type="TabContainer" parent="p/v/HSplit/PropertyEditPanel"]
+margin_right = 480.0
+margin_bottom = 38.0
+size_flags_vertical = 3
+tab_align = 0
+
+[node name="Layers" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 34.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 0, 150 )
+size_flags_vertical = 3
+
+[node name="layer_list" type="ItemList" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers"]
+margin_right = 472.0
+margin_bottom = 115.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers"]
+margin_top = 119.0
+margin_right = 472.0
+margin_bottom = 150.0
+
+[node name="btn_add" type="Button" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/HBoxContainer"]
+margin_right = 24.0
+margin_bottom = 31.0
+icon = ExtResource( 4 )
+flat = true
+
+[node name="btn_remove" type="Button" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/HBoxContainer"]
+margin_left = 28.0
+margin_right = 52.0
+margin_bottom = 31.0
+icon = ExtResource( 1 )
+flat = true
+
+[node name="Shaders" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_vertical = 3
+
+[node name="shader_list" type="ItemList" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Shaders"]
+margin_top = 4.0
+margin_right = 190.0
+margin_bottom = 4.0
+size_flags_vertical = 3
+items = [ "Default", null, false ]
+
+[node name="dock_properties" type="TabContainer" parent="p/v/HSplit/PropertyEditPanel"]
+margin_top = 50.0
+margin_right = 480.0
+margin_bottom = 368.0
+size_flags_vertical = 3
+tab_align = 0
+
+[node name="Parameters" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 34.0
+margin_right = -4.0
+margin_bottom = -4.0
+size_flags_vertical = 3
+
+[node name="layer_properties" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Parameters"]
+margin_right = 472.0
+size_flags_horizontal = 3
+
+[node name="uniforms" type="ScrollContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Parameters"]
+margin_top = 4.0
+margin_right = 472.0
+margin_bottom = 120.0
+size_flags_vertical = 3
+
+[node name="uniform_editors" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Parameters/uniforms"]
+margin_right = 472.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Shader" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 29.0
+margin_right = -5.0
+margin_bottom = -5.0
+size_flags_vertical = 3
+
+[node name="layer_properties" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Shader"]
+margin_right = 290.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Shader/layer_properties"]
+margin_right = 290.0
+margin_bottom = 22.0
+text = "Relative Path"
+
+[node name="shader_picker" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Shader/layer_properties" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 26.0
+margin_right = 290.0
+margin_bottom = 50.0
+file_dialog_path = NodePath("../../../../../../../../FileDialog")
+
+[node name="uniforms" type="ScrollContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Shader"]
+margin_top = 54.0
+margin_right = 290.0
+margin_bottom = 355.0
+size_flags_vertical = 3
+
+[node name="uniform_editors" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Shader/uniforms"]
+margin_right = 290.0
+margin_bottom = 301.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ShaderEditPanel" type="VBoxContainer" parent="p/v/HSplit"]
+margin_left = 492.0
+margin_right = 1440.0
+margin_bottom = 368.0
+size_flags_horizontal = 3
+
+[node name="TabContainer" type="TabContainer" parent="p/v/HSplit/ShaderEditPanel"]
+margin_right = 948.0
+margin_bottom = 368.0
+size_flags_vertical = 3
+tab_align = 0
+
+[node name="Preview" type="TextureRect" parent="p/v/HSplit/ShaderEditPanel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 34.0
+margin_right = -4.0
+margin_bottom = -4.0
+expand = true
+stretch_mode = 6
+script = ExtResource( 7 )
+viewport_path = NodePath("../../../../../Viewport")
+
+[node name="PreviewProps" type="HBoxContainer" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -487.0
+margin_top = -40.0
+
+[node name="p_preview_size" type="Label" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps"]
+margin_top = 10.0
+margin_right = 105.0
+margin_bottom = 29.0
+text = "Preview Size: "
+
+[node name="width" type="SpinBox" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps"]
+margin_left = 109.0
+margin_right = 237.0
+margin_bottom = 40.0
+max_value = 4000.0
+value = 320.0
+allow_greater = true
+prefix = "x"
+suffix = "px"
+
+[node name="height" type="SpinBox" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps"]
+margin_left = 241.0
+margin_right = 369.0
+margin_bottom = 40.0
+max_value = 4000.0
+value = 180.0
+allow_greater = true
+prefix = "y"
+suffix = "px"
+
+[node name="CheckBox" type="CheckBox" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps"]
+margin_left = 373.0
+margin_right = 487.0
+margin_bottom = 40.0
+pressed = true
+text = "Scale to fit"
+
+[node name="RecordProps" type="HBoxContainer" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -487.0
+margin_bottom = 40.0
+alignment = 2
+
+[node name="Button" type="Button" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/RecordProps"]
+margin_left = 426.0
+margin_right = 487.0
+margin_bottom = 40.0
+toggle_mode = true
+text = "Record"
+
+[node name="toolbar" type="HBoxContainer" parent="p/v"]
+margin_top = 372.0
+margin_right = 1440.0
+margin_bottom = 403.0
+
+[node name="btn_project_open" type="ToolButton" parent="p/v/toolbar"]
+margin_right = 82.0
+margin_bottom = 31.0
+text = "Open..."
+icon = ExtResource( 8 )
+
+[node name="btn_project_save" type="ToolButton" parent="p/v/toolbar"]
+margin_left = 86.0
+margin_right = 128.0
+margin_bottom = 31.0
+text = "Save"
+
+[node name="btn_project_save_as" type="ToolButton" parent="p/v/toolbar"]
+margin_left = 132.0
+margin_right = 220.0
+margin_bottom = 31.0
+text = "Save As..."
+
+[node name="btn_project_close" type="ToolButton" parent="p/v/toolbar"]
+margin_left = 224.0
+margin_right = 272.0
+margin_bottom = 31.0
+text = "Close"
+
+[node name="new_panel" type="Panel" parent="."]
+margin_right = 1440.0
+margin_bottom = 810.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="new_panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -95.0
+margin_top = -25.0
+margin_right = 95.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="Label" type="Label" parent="new_panel/VBoxContainer"]
+margin_right = 190.0
+margin_bottom = 14.0
+text = "Distortionator BETA"
+align = 1
+
+[node name="btn_new" type="LinkButton" parent="new_panel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 190.0
+margin_bottom = 32.0
+text = "Create New Project"
+
+[node name="btn_open" type="LinkButton" parent="new_panel/VBoxContainer"]
+margin_top = 36.0
+margin_right = 190.0
+margin_bottom = 50.0
+focus_mode = 2
+text = "Open Existing Project"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+margin_top = 460.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 150, 52.5 )
+window_title = "Open a File"
+mode = 0
+access = 2
+current_dir = "/home/mrpedrobraga/Development/modot-distortionator"
+current_path = "/home/mrpedrobraga/Development/modot-distortionator/"
+
+[node name="ProjectFileDialog" type="FileDialog" parent="."]
+margin_top = 460.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 150, 52.5 )
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.dsp, *.bbg; Distortionator File" )
+current_dir = "/home/mrpedrobraga/Development/modot-distortionator"
+current_path = "/home/mrpedrobraga/Development/modot-distortionator/"
+
+[node name="ImageDialog" type="FileDialog" parent="."]
+margin_right = 315.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 150, 52.5 )
+window_title = "Open a File"
+mode = 0
+access = 2
+current_dir = "/home/mrpedrobraga/Development/modot-distortionator"
+current_path = "/home/mrpedrobraga/Development/modot-distortionator/"
+
+[connection signal="encoding_progress" from="p/Viewport/GifRecorder" to="." method="_on_GifRecorder_encoding_progress"]
+[connection signal="pressed" from="p/Toolbar/btn_run" to="." method="_on_btn_run_pressed"]
+[connection signal="item_selected" from="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/layer_list" to="." method="_on_layer_list_item_selected"]
+[connection signal="pressed" from="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/HBoxContainer/btn_add" to="." method="_on_btn_layer_add_pressed"]
+[connection signal="pressed" from="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/HBoxContainer/btn_remove" to="." method="_on_btn_layer_remove_pressed"]
+[connection signal="value_changed" from="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps/width" to="p/v/HSplit/ShaderEditPanel/TabContainer/Preview" method="_on_width_value_changed"]
+[connection signal="value_changed" from="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps/height" to="p/v/HSplit/ShaderEditPanel/TabContainer/Preview" method="_on_height_value_changed"]
+[connection signal="toggled" from="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps/CheckBox" to="p/v/HSplit/ShaderEditPanel/TabContainer/Preview" method="_on_CheckBox_toggled"]
+[connection signal="toggled" from="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/RecordProps/Button" to="." method="_on_record_toggled"]
+[connection signal="pressed" from="p/v/toolbar/btn_project_open" to="." method="_on_btn_project_open_pressed"]
+[connection signal="pressed" from="p/v/toolbar/btn_project_save" to="." method="_on_btn_project_save_pressed"]
+[connection signal="pressed" from="p/v/toolbar/btn_project_save_as" to="." method="_on_btn_project_save_as_pressed"]
+[connection signal="pressed" from="p/v/toolbar/btn_project_close" to="." method="_on_btn_project_close_pressed"]
+[connection signal="pressed" from="new_panel/VBoxContainer/btn_new" to="." method="_on_btn_project_new_pressed"]
+[connection signal="pressed" from="new_panel/VBoxContainer/btn_open" to="." method="_on_btn_project_open_pressed"]
+[connection signal="file_selected" from="ProjectFileDialog" to="." method="_on_ProjectFileDialog_file_selected"]
