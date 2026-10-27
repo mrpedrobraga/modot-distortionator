@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/icons/Remove.png" type="Texture" id=1]
 [ext_resource path="res://src/D_Core.gd" type="Script" id=2]
@@ -21,6 +21,16 @@ action = "ui_toggle_view"
 [sub_resource type="ShortCut" id=6]
 shortcut = SubResource( 5 )
 
+[sub_resource type="StyleBoxEmpty" id=9]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
 [node name="Control" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,6 +47,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="Viewport" type="Viewport" parent="p"]
 size = Vector2( 320, 180 )
 transparent_bg = true
+usage = 0
 render_target_v_flip = true
 render_target_update_mode = 3
 
@@ -88,51 +99,53 @@ margin_bottom = 403.0
 
 [node name="HSplit" type="HSplitContainer" parent="p/v"]
 margin_right = 1440.0
-margin_bottom = 368.0
+margin_bottom = 370.0
 size_flags_vertical = 3
 
 [node name="PropertyEditPanel" type="VSplitContainer" parent="p/v/HSplit"]
 margin_right = 480.0
-margin_bottom = 368.0
+margin_bottom = 370.0
 rect_min_size = Vector2( 480, 0 )
 split_offset = -200
 
 [node name="dock_proj_layers" type="TabContainer" parent="p/v/HSplit/PropertyEditPanel"]
 margin_right = 480.0
-margin_bottom = 38.0
+margin_bottom = 49.0
 size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
 tab_align = 0
 
 [node name="Layers" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 34.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 8.0
+margin_top = 41.0
+margin_right = -8.0
+margin_bottom = -8.0
 rect_min_size = Vector2( 0, 150 )
 size_flags_vertical = 3
 
 [node name="layer_list" type="ItemList" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers"]
-margin_right = 472.0
-margin_bottom = 115.0
+margin_right = 464.0
+margin_bottom = 117.0
 size_flags_vertical = 3
+custom_styles/bg = SubResource( 8 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers"]
-margin_top = 119.0
-margin_right = 472.0
+margin_top = 121.0
+margin_right = 464.0
 margin_bottom = 150.0
 
 [node name="btn_add" type="Button" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/HBoxContainer"]
 margin_right = 24.0
-margin_bottom = 31.0
+margin_bottom = 29.0
 icon = ExtResource( 4 )
 flat = true
 
 [node name="btn_remove" type="Button" parent="p/v/HSplit/PropertyEditPanel/dock_proj_layers/Layers/HBoxContainer"]
 margin_left = 28.0
 margin_right = 52.0
-margin_bottom = 31.0
+margin_bottom = 29.0
 icon = ExtResource( 1 )
 flat = true
 
@@ -151,37 +164,39 @@ margin_top = 4.0
 margin_right = 190.0
 margin_bottom = 4.0
 size_flags_vertical = 3
+custom_styles/bg = SubResource( 10 )
 items = [ "Default", null, false ]
 
 [node name="dock_properties" type="TabContainer" parent="p/v/HSplit/PropertyEditPanel"]
-margin_top = 50.0
+margin_top = 61.0
 margin_right = 480.0
-margin_bottom = 368.0
+margin_bottom = 370.0
 size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
 tab_align = 0
 
 [node name="Parameters" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 34.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 8.0
+margin_top = 41.0
+margin_right = -8.0
+margin_bottom = -8.0
 size_flags_vertical = 3
 
 [node name="layer_properties" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Parameters"]
-margin_right = 472.0
+margin_right = 464.0
 size_flags_horizontal = 3
 
 [node name="uniforms" type="ScrollContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Parameters"]
 margin_top = 4.0
-margin_right = 472.0
-margin_bottom = 120.0
+margin_right = 464.0
+margin_bottom = 110.0
 size_flags_vertical = 3
 
 [node name="uniform_editors" type="VBoxContainer" parent="p/v/HSplit/PropertyEditPanel/dock_properties/Parameters/uniforms"]
-margin_right = 472.0
-margin_bottom = 116.0
+margin_right = 464.0
+margin_bottom = 106.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -230,22 +245,23 @@ size_flags_vertical = 3
 [node name="ShaderEditPanel" type="VBoxContainer" parent="p/v/HSplit"]
 margin_left = 492.0
 margin_right = 1440.0
-margin_bottom = 368.0
+margin_bottom = 370.0
 size_flags_horizontal = 3
 
 [node name="TabContainer" type="TabContainer" parent="p/v/HSplit/ShaderEditPanel"]
 margin_right = 948.0
-margin_bottom = 368.0
+margin_bottom = 370.0
 size_flags_vertical = 3
+custom_styles/panel = SubResource( 9 )
 tab_align = 0
 
 [node name="Preview" type="TextureRect" parent="p/v/HSplit/ShaderEditPanel/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 34.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_left = 8.0
+margin_top = 41.0
+margin_right = -8.0
+margin_bottom = -8.0
 expand = true
 stretch_mode = 6
 script = ExtResource( 7 )
@@ -260,14 +276,14 @@ margin_left = -487.0
 margin_top = -40.0
 
 [node name="p_preview_size" type="Label" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps"]
-margin_top = 10.0
-margin_right = 105.0
-margin_bottom = 29.0
+margin_top = 11.0
+margin_right = 93.0
+margin_bottom = 28.0
 text = "Preview Size: "
 
 [node name="width" type="SpinBox" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps"]
-margin_left = 109.0
-margin_right = 237.0
+margin_left = 97.0
+margin_right = 189.0
 margin_bottom = 40.0
 max_value = 4000.0
 value = 320.0
@@ -276,8 +292,8 @@ prefix = "x"
 suffix = "px"
 
 [node name="height" type="SpinBox" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps"]
-margin_left = 241.0
-margin_right = 369.0
+margin_left = 193.0
+margin_right = 285.0
 margin_bottom = 40.0
 max_value = 4000.0
 value = 180.0
@@ -286,8 +302,8 @@ prefix = "y"
 suffix = "px"
 
 [node name="CheckBox" type="CheckBox" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/PreviewProps"]
-margin_left = 373.0
-margin_right = 487.0
+margin_left = 289.0
+margin_right = 387.0
 margin_bottom = 40.0
 pressed = true
 text = "Scale to fit"
@@ -300,39 +316,39 @@ margin_bottom = 40.0
 alignment = 2
 
 [node name="Button" type="Button" parent="p/v/HSplit/ShaderEditPanel/TabContainer/Preview/RecordProps"]
-margin_left = 426.0
+margin_left = 436.0
 margin_right = 487.0
 margin_bottom = 40.0
 toggle_mode = true
 text = "Record"
 
 [node name="toolbar" type="HBoxContainer" parent="p/v"]
-margin_top = 372.0
+margin_top = 374.0
 margin_right = 1440.0
 margin_bottom = 403.0
 
 [node name="btn_project_open" type="ToolButton" parent="p/v/toolbar"]
-margin_right = 82.0
-margin_bottom = 31.0
+margin_right = 70.0
+margin_bottom = 29.0
 text = "Open..."
 icon = ExtResource( 8 )
 
 [node name="btn_project_save" type="ToolButton" parent="p/v/toolbar"]
-margin_left = 86.0
-margin_right = 128.0
-margin_bottom = 31.0
+margin_left = 74.0
+margin_right = 113.0
+margin_bottom = 29.0
 text = "Save"
 
 [node name="btn_project_save_as" type="ToolButton" parent="p/v/toolbar"]
-margin_left = 132.0
-margin_right = 220.0
-margin_bottom = 31.0
+margin_left = 117.0
+margin_right = 190.0
+margin_bottom = 29.0
 text = "Save As..."
 
 [node name="btn_project_close" type="ToolButton" parent="p/v/toolbar"]
-margin_left = 224.0
-margin_right = 272.0
-margin_bottom = 31.0
+margin_left = 194.0
+margin_right = 235.0
+margin_bottom = 29.0
 text = "Close"
 
 [node name="new_panel" type="Panel" parent="."]
@@ -353,20 +369,20 @@ rect_min_size = Vector2( 100, 0 )
 
 [node name="Label" type="Label" parent="new_panel/VBoxContainer"]
 margin_right = 190.0
-margin_bottom = 14.0
+margin_bottom = 17.0
 text = "Distortionator BETA"
 align = 1
 
 [node name="btn_new" type="LinkButton" parent="new_panel/VBoxContainer"]
-margin_top = 18.0
+margin_top = 21.0
 margin_right = 190.0
-margin_bottom = 32.0
+margin_bottom = 38.0
 text = "Create New Project"
 
 [node name="btn_open" type="LinkButton" parent="new_panel/VBoxContainer"]
-margin_top = 36.0
+margin_top = 42.0
 margin_right = 190.0
-margin_bottom = 50.0
+margin_bottom = 59.0
 focus_mode = 2
 text = "Open Existing Project"
 
@@ -378,8 +394,6 @@ rect_min_size = Vector2( 150, 52.5 )
 window_title = "Open a File"
 mode = 0
 access = 2
-current_dir = "/home/mrpedrobraga/Development/modot-distortionator"
-current_path = "/home/mrpedrobraga/Development/modot-distortionator/"
 
 [node name="ProjectFileDialog" type="FileDialog" parent="."]
 margin_top = 460.0
@@ -390,8 +404,6 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.dsp, *.bbg; Distortionator File" )
-current_dir = "/home/mrpedrobraga/Development/modot-distortionator"
-current_path = "/home/mrpedrobraga/Development/modot-distortionator/"
 
 [node name="ImageDialog" type="FileDialog" parent="."]
 margin_right = 315.0
@@ -400,8 +412,6 @@ rect_min_size = Vector2( 150, 52.5 )
 window_title = "Open a File"
 mode = 0
 access = 2
-current_dir = "/home/mrpedrobraga/Development/modot-distortionator"
-current_path = "/home/mrpedrobraga/Development/modot-distortionator/"
 
 [connection signal="encoding_progress" from="p/Viewport/GifRecorder" to="." method="_on_GifRecorder_encoding_progress"]
 [connection signal="pressed" from="p/Toolbar/btn_run" to="." method="_on_btn_run_pressed"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/two_colors.png-882920e455db32764176f970b89f83fa.stex"
+path="res://.import/two_colors.png-2a9ea00d42cbfde181d536f2d6095ad8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imgs/two_colors.png"
-dest_files=[ "res://.import/two_colors.png-882920e455db32764176f970b89f83fa.stex" ]
+source_file="res://addons/GifMaker/godot-gdgifexporter/imgs/two_colors.png"
+dest_files=[ "res://.import/two_colors.png-2a9ea00d42cbfde181d536f2d6095ad8.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

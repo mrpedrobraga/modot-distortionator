@@ -52,6 +52,7 @@ const keywords := [
 	"particles",
 	
 	"if", "else", "for", "while",
+	"return",
 
 	"blend_mix",
 	"blend_add",

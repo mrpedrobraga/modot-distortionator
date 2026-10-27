@@ -68,8 +68,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Distortionator 1.0"
-config/description="A simple app to create battle backgrounds for Modot."
+config/name="Distortionator 1.1.0"
+config/description="A simple app to create battle backgrounds for Godot games."
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
 
@@ -81,12 +81,16 @@ Globals="*res://src/Globals.gd"
 
 window/size/width=1440
 window/size/height=810
-window/size/test_width=900
-window/size/test_height=600
+window/size/test_width=1400
+window/size/test_height=700
 
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/GifMaker/plugin.cfg", "res://addons/distortionator_integration/plugin.cfg" )
+
+[gui]
+
+theme/custom_font="res://assets/main_font.tres"
 
 [input]
 

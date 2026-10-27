@@ -67,6 +67,11 @@ func _import_scene(path : String, flags : int, bake_fps : int):
 		layer_node.material = material
 		layer_node.name = layer_section
 		node.add_child(layer_node, true)
+		var backbuffer = BackBufferCopy.new()
+		backbuffer.copy_mode = BackBufferCopy.COPY_MODE_VIEWPORT
+		layer_node.add_child(backbuffer)
+		node.add_child(layer_node, true)
+		backbuffer.owner = node
 		layer_node.owner = node
 		
 		if "texture" in keys:

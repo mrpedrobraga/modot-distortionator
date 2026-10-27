@@ -112,7 +112,7 @@ func _on_bool_toggled(button_pressed):
 	set_value(button_pressed)
 
 func _on_int_value_changed(value):
-	set_value(value)
+	set_value(int(value))
 
 func _on_float_value_changed(value):
 	set_value(value)

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/half_transparent.png-759ca3064b76f75433b951bb319a9366.stex"
+path="res://.import/half_transparent.png-e930e02c59422de3a13ef3a308fd011c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://imgs/half_transparent.png"
-dest_files=[ "res://.import/half_transparent.png-759ca3064b76f75433b951bb319a9366.stex" ]
+source_file="res://addons/GifMaker/godot-gdgifexporter/imgs/half_transparent.png"
+dest_files=[ "res://.import/half_transparent.png-e930e02c59422de3a13ef3a308fd011c.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

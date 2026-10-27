@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=18 format=2]
+[gd_resource type="Theme" load_steps=22 format=2]
+
+[ext_resource path="res://assets/main_font.tres" type="DynamicFont" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=21]
 
@@ -40,8 +42,8 @@ bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
 [sub_resource type="StyleBoxFlat" id=20]
 content_margin_left = 8.0
 content_margin_right = 8.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
+content_margin_top = 10.0
+content_margin_bottom = 8.0
 bg_color = Color( 0.03, 0.03, 0.03, 0.5 )
 
 [sub_resource type="StyleBoxEmpty" id=22]
@@ -55,19 +57,18 @@ bg_color = Color( 0.0588235, 0.0588235, 0.0588235, 1 )
 
 [sub_resource type="StyleBoxFlat" id=24]
 
-[sub_resource type="StyleBoxFlat" id=9]
-content_margin_left = 4.0
-content_margin_right = 4.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+[sub_resource type="StyleBoxEmpty" id=29]
 
 [sub_resource type="StyleBoxFlat" id=10]
-content_margin_left = 8.0
-content_margin_right = 8.0
+content_margin_left = 12.0
+content_margin_right = 12.0
 content_margin_top = 8.0
 content_margin_bottom = 8.0
 bg_color = Color( 0.0588235, 0.0588235, 0.0588235, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id=11]
 content_margin_left = 8.0
@@ -77,20 +78,25 @@ content_margin_bottom = 4.0
 bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=12]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.137255, 0.121569, 0.156863, 1 )
 border_width_top = 2
-border_color = Color( 0.878431, 0.411765, 0.0705882, 1 )
+border_color = Color( 0.72549, 0.568627, 0.803922, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=13]
-content_margin_left = 4.0
-content_margin_right = 4.0
-content_margin_top = 4.0
-content_margin_bottom = 4.0
-bg_color = Color( 0.0588235, 0.0588235, 0.0588235, 1 )
+[sub_resource type="StyleBoxEmpty" id=30]
+
+[sub_resource type="StyleBoxEmpty" id=26]
+
+[sub_resource type="StyleBoxEmpty" id=27]
+
+[sub_resource type="StyleBoxEmpty" id=28]
 
 [sub_resource type="StyleBoxFlat" id=25]
 content_margin_top = 4.0
@@ -102,6 +108,7 @@ border_width_bottom = 2
 expand_margin_top = 24.0
 
 [resource]
+default_font = ExtResource( 1 )
 Button/styles/disabled = SubResource( 21 )
 Button/styles/focus = SubResource( 15 )
 Button/styles/hover = SubResource( 16 )
@@ -113,17 +120,19 @@ ItemList/styles/bg_focus = SubResource( 15 )
 LineEdit/styles/focus = SubResource( 15 )
 LineEdit/styles/normal = SubResource( 20 )
 LineEdit/styles/read_only = SubResource( 22 )
-LinkButton/colors/font_color = Color( 0.878431, 0.411765, 0.0705882, 1 )
-LinkButton/colors/font_color_hover = Color( 0.952941, 0.560784, 0.105882, 1 )
-LinkButton/colors/font_color_pressed = Color( 0.12549, 0.486275, 1, 1 )
+LinkButton/colors/font_color = Color( 0.0705882, 0.784314, 0.878431, 1 )
+LinkButton/colors/font_color_hover = Color( 0.784314, 0.54902, 0.901961, 1 )
+LinkButton/colors/font_color_pressed = Color( 0.576471, 0.352941, 0.898039, 1 )
 Panel/styles/panel = SubResource( 8 )
 PopupDialog/styles/panel = SubResource( 24 )
-TabContainer/styles/panel = SubResource( 9 )
+TabContainer/styles/panel = SubResource( 29 )
 TabContainer/styles/tab_bg = SubResource( 10 )
 TabContainer/styles/tab_disabled = SubResource( 11 )
 TabContainer/styles/tab_fg = SubResource( 12 )
-TextEdit/styles/focus = SubResource( 15 )
-TextEdit/styles/normal = SubResource( 13 )
+TextEdit/styles/completion = SubResource( 30 )
+TextEdit/styles/focus = SubResource( 26 )
+TextEdit/styles/normal = SubResource( 27 )
+TextEdit/styles/read_only = SubResource( 28 )
 Tree/styles/bg = SubResource( 23 )
 Tree/styles/bg_focus = SubResource( 15 )
 WindowDialog/styles/panel = SubResource( 25 )
